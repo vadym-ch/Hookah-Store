@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration and Login App</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css">
+</head>
+<body>
+   
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/registration}">Registration</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/users}">Show all Users(Admin)</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/products}">Show all Products(Admin)</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/orders}">Show all Orders(Admin)</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/cart/show}">My Shopping Cart</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/orders/show}">My Orders</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+
+<div class="container">
+    <h1>
+        Online Hookah Store</h1>
+</div>
+<style>
+    .container {
+        text-align: center;
+    }
+</style>
+
+<tr th:each="product : ${products}">
+    <figure class="sign">
+        <p><img class="foto" th:src="@{'/images/'} + ${product.imageFileName}" width="200" height="212" alt="kalian">
+        </p>
+        <figcaption>
+   <span class="price"><td th:text="${product.name}"></td><br>
+   </span>
+            <span class="price">Price: </span>
+            <td th:text="${product.price}"></td>
+            <p style="text-align: center"><span class="amount">Quantity available: </span>
+            <td th:text="${product.amount}"></td>
+            <p style="text-align: center">
+                <button><a th:href="@{/cart/add/{id}(id=${product.id})}" class="btn btn-primary">Add to cart</a>
+                </button>
+            <p style="text-align: center"><span class="description">Description: </span>
+            <td th:text="${product.description}"></td>
+        </figcaption>
+    </figure>
+</tr>
+
+<style>
+    .sign {
+        float: left;
+        border: 1px solid #333;
+        padding: 10px;
+        margin: 30px 30px 10px 60px;
+        background: #f0f0f0;
+    }
+
+    .sign figcaption {
+        margin: 0 auto 5px;
+        text-align: center;
+    }
+/* body{background-color:lightskyblue;} */
+</style>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Shopping Cart</h1>
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                Photo</a>
+            </th>
+            <th>
+                Name</a>
+            </th>
+            <th>
+                Price</a>
+            </th>
+            <th>
+                Amount</a>
+            </th>
+            <th>
+                Total price</a>
+            </th>
+            <th>
+                Action</a>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="item : ${products}">
+            <td> <img class="foto" th:src="@{'/images/'} + ${item.imageFileName}" width="220" height="220" alt="foto"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.amount}"></td>
+            <td th:text="${item.amount*item.price}"></td>
+            <td> <a th:href="@{/cart/update/{id}(id=${item.id})}" class="btn btn-primary">Change amount</a>
+                <a th:href="@{/cart/delete/{id}(id=${item.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-8">
+            <strong>Sum: </strong>
+            <td th:text="${sum}"></td>
+        </div>
+    </div>
+
+    <a th:href="@{/cart/clean}" class="btn btn-primary">Clean</a>
+    <a th:href="@{/order/complete}" class="btn btn-danger">Complete an order</a>
+    <a th:href = "@{/}" class="btn btn-primary"> Back to the shopping</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Your order list</h1>
+
+    <h3>Your can see here your orders that are in the process! </h3>
+       
+
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                Order date</a>
+            </th>
+            <th>
+                Order sum</a>
+            </th>
+            <th>
+                Order details</a>
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.sum}"></td>
+            <td> <a th:href="@{/user/orders/details/{id}(id=${order.id})}" class="btn btn-primary">Product list</a>
+        </tr>
+        </tbody>
+    </table>
+    <h3 style="color: dimgray;">When your order is accepted successfully, it will no longer be displayed here.</h3>
+    <a th:href = "@{/}"> Back to the main page</a>
+</div>
+</body>
+</html>
