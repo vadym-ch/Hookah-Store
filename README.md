@@ -13,4 +13,7 @@ Online shop of hookah components.
 **Frontend**
   - Thymeleaf
   - Bootstrap
-(Discipline: Databases)
+
+**Discipline:**
+  - Databases
+  
