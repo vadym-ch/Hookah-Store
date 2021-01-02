@@ -1,5 +1,5 @@
 # Hookah-Store
-Online shop of hookah components.
+Online shop on example of hookah products.
 ## Technology Stacks
 **Backend**
   - Java 11
