@@ -9,7 +9,8 @@ Online shop of hookah components.
   - Hibernate
   - MySQL
   - Maven
- **Frontend**
+
+**Frontend**
   - Thymeleaf
   - Bootstrap
 (Discipline: Databases)
